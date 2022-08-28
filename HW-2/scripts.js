@@ -7,7 +7,7 @@ while(isNaN(N)) {
 }
 
 while(isNaN(M) ||  M <= N ) {
-    M = Math.round(prompt("Enter the number from which we will start to sum: (It has to be greater than N)", 12));
+    M = Math.round(prompt("Enter the number till which we will sum: (It has to be greater than N)", 12));
 }
 
 let numbersType = confirm("Should we miss even numbers?")
