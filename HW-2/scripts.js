@@ -14,20 +14,13 @@ let skipEvenNumbers = confirm("Should we miss even numbers?")
 let sum = 0;
 
 function isOdd(num){
-    if(num % 2 != 0) {
-        return true;
-    }
-    else false;
+    return num % 2 !== 0;
 }
 
-for(let i = min; i <= max; ++i) {    
-    if(skipEvenNumbers && isOdd(i)) {
+for(let i = min; i <= max; ++i) { 
+    if(skipEvenNumbers && isOdd(i) || !skipEvenNumbers) {
         sum += i;
     }
-    else if (skipEvenNumbers == false) {
-        sum += i;
-    }
-
 }
 
 console.log("The sum is equal to: ");
