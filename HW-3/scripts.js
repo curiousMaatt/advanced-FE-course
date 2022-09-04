@@ -28,14 +28,12 @@ function myOwnPow(base, power) {
 function normalizeName(name) {
     let lowerName = name.toLowerCase();
     let firstLetter = lowerName[0].toUpperCase();
+    let withoutFirst = "";
 
-    withoutFirst = "";
-    for( let i = 0; i < lowerName.length; ++i ) {
-        if(i == 0) {
-            continue
-        }
-        else 
+    for(let i = 0; i < lowerName.length; ++i) {
+        if(i !== 0) {
             withoutFirst += lowerName[i];
+        }
     }
 
     let newName = firstLetter + withoutFirst;
@@ -83,6 +81,7 @@ function countLetter(letter, word) {
 
 // #7
 const DOLLAR_SYMBOL = "$";
+const exchangeRate = 25;
 
 function convertCurrency(money) {
     let convertedMoney = 0;
@@ -90,20 +89,19 @@ function convertCurrency(money) {
 
     if( money.includes(DOLLAR_SYMBOL) ) {
         withoutSymbol = money.replace(DOLLAR_SYMBOL,'');
-        convertedMoney = Number(withoutSymbol) * 25;
+        convertedMoney = Number(withoutSymbol) * exchangeRate;
 
         return convertedMoney + "UAH";
     }
 
     if ( money.toLowerCase().includes("uah")) {
         withoutSymbol = money.toLowerCase().replace("uah",'');
-        convertedMoney = Number(withoutSymbol) / 25;
+        convertedMoney = Number(withoutSymbol) / exchangeRate;
 
         return convertedMoney + DOLLAR_SYMBOL;
     }
-    else 
-        return"Wwrong values =(";
 
+    return"Wwrong values =(";
 }
 
 
@@ -125,7 +123,7 @@ function randomPassword(n = 8) {
 
 // #9
 function deleteLetters(letter, word) {
-    newWord = "";
+    let newWord = "";
 
     for( let i = 0; i < word.length; ++i) {
         if( word[i] != letter ) {
@@ -140,7 +138,7 @@ function deleteLetters(letter, word) {
 
 // #10
 function isItPalyndrom(word) {
-    value = word.toLowerCase() === word.toLowerCase().split("").reverse().join("");
+    let value = word.toLowerCase() === word.toLowerCase().split("").reverse().join("");
 
     return value;
 }
@@ -161,22 +159,20 @@ function deleteDuplicateLetter(sentence) {
 }
 
 
-
-
 //_____ First task
-let x = 357812;
-console.log("The max digit of " + x + " is "  + getMaxDigit(x));
+let randomNumber = 357812;
+console.log("The max digit of " + randomNumber + " is "  + getMaxDigit(randomNumber));
 
 
 //_____ Second task
-let a = 4;
-let n = 3;
-console.log( a + " ^ " + n + " = " + myOwnPow(a,n));
+let num = 4;
+let power = 3;
+console.log( num + " ^ " + power + " = " + myOwnPow(num,power));
 
 
 //_____ Third task
-let Name = "вЛад";
-console.log(Name + " -> " +  normalizeName(Name));
+let incorrectName = "вЛад";
+console.log(incorrectName + " -> " +  normalizeName(incorrectName));
 
 
 // _____ Fourth task
@@ -185,21 +181,21 @@ console.log(amount +  " -> " + afterTaxes(amount));
 
 
 // _____ Fifth task
-let A = 10; //inclusive
-let B = 20; //exclusive
-console.log("Random value in range from " + A + " till " + B + " = " +  getRandomNumber(A,B))
+let min = 10; //inclusive
+let max = 20; //exclusive
+console.log("Random value in range from " + min + " till " + max + " = " +  getRandomNumber(min,max))
 
 
 // _____ Sixth task
-let Word = "aaaabbb";
-let Letter = 'a';
-console.log( "The letter " + Letter + " in word " + Word + " repeats " + countLetter(Letter, Word) + " times");
+let word = "aaaabbb";
+let letter = 'a';
+console.log( "The letter " + letter + " in word " + word + " repeats " + countLetter(letter, word) + " times");
 
 
 // _____ Seventh task
-cash1 = "100$";
-cash2 = "2500UAH";
-cash3 = "2500uah";
+let cash1 = "100$";
+let cash2 = "2500UAH";
+let cash3 = "2500uah";
 
 console.log(cash1 + " = " + convertCurrency(cash1));
 console.log(cash2 + " = " + convertCurrency(cash2));
@@ -218,15 +214,16 @@ console.log("String '" + str + "' without " + char + " = " +  " '" + deleteLette
 
 
 // _____ Tenth task
-let Word1 = "Мадам";
-let Word2 = "wow";
-let Word3 = "Nope"
-console.log("'"+ Word1 + "' " + " is palindrome - "  + isItPalyndrom(Word1));
-console.log("'"+ Word2 + "' " + " is palindrome - "  + isItPalyndrom(Word2));
-console.log("'"+ Word3 + "' " + " is palindrome - "  + isItPalyndrom(Word3));
+let word1 = "Мадам";
+let word2 = "wow";
+let word3 = "Nope"
+console.log("'"+ word1 + "' " + " is palindrome - "  + isItPalyndrom(word1));
+console.log("'"+ word2 + "' " + " is palindrome - "  + isItPalyndrom(word2));
+console.log("'"+ word3 + "' " + " is palindrome - "  + isItPalyndrom(word3));
 
 
 // _____ Eleventh task
-let Sentence = "A long time ago in a galaxy far, far away..."
-console.log(Sentence + " --> "  + deleteDuplicateLetter(Sentence))
+let sentence = "A long time ago in a galaxy far, far away..."
+console.log(sentence + " --> "  + deleteDuplicateLetter(sentence))
+
 
