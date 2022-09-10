@@ -3,15 +3,19 @@ function womensNameCheck(name) {
     return name.endsWith('а');
 }
 
-function createPairs(Arr) {
+function createPairs(arr) {
     let menArr = [];
     let womenArr = [];
-    let name = "";
     let newArr = [];
     
-    for(let i = 0; i < Arr.length; ++i ) {
-        name = students[i].toString();
-        name.endsWith('а') ? womenArr.push(name) : menArr.push(name);
+    for(let i = 0; i < arr.length; ++i ) {
+        let name = students[i];
+
+        if(womensNameCheck(name)){
+            womenArr.push(name);
+        }
+        else
+            menArr.push(name);
     }
 
     for(let i = 0; i < menArr.length; i++) {
@@ -28,33 +32,37 @@ function createPairs(Arr) {
     return newArr;
 }
 
-function attachThemes(Arr, themesArr) {
+function attachThemes(arr, themesArr) {
     let newArr = [];
-    let pairsTogetherArr = Arr.map( name => name.join(" i "));
+    let pairsTogetherArr = [];
+    
+    // other variant of joining
+    // let pairsTogetherArr = arr.map( name => name.join(" i "));
 
-    for(let i = 0; i < Arr.length; i++) {
+    for(let i = 0; i < arr.length; i++) {
+        pairsTogetherArr[i] = arr[i].join(" i ");
         newArr.push([pairsTogetherArr[i], themesArr[i]]);
     }
 
     return newArr;
 }
 
-function attachGrades(Arr, gradesArr) {
+function attachGrades(arr, gradesArr) {
     let newArr = [];
 
-    for(let i = 0; i < Arr.length; i++) {
-        newArr.push([Arr[i], gradesArr[i]]);
+    for(let i = 0; i < arr.length; i++) {
+        newArr.push([arr[i], gradesArr[i]]);
     }
     return newArr;
 }
 
 function pairsGetRandomMark(pairsArr) {
     let newArr = [];
-    let randomMarksArr = [];
 
     for (let i = 0; i < pairsArr.length; i++) {
-        randomMarksArr.push(Math.floor(Math.random() * 5 + 1));
-        newArr.push(pairsArr[i].concat(randomMarksArr[i]));
+        let randomMark =  Math.floor(Math.random() * 5 + 1);
+        newArr.push(pairsArr[i].concat(randomMark));
+
     }
     return newArr;
 }
@@ -72,3 +80,4 @@ console.log(pairs);
 console.log(pairsWithTheme);
 console.log(studentsWithMarks);
 console.log(randomGrades);
+
