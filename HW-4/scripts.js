@@ -40,8 +40,8 @@ function attachThemes(arr, themesArr) {
     // let pairsTogetherArr = arr.map( name => name.join(" i "));
 
     for(let i = 0; i < arr.length; i++) {
-        pairsTogetherArr[i] = arr[i].join(" i ");
-        newArr.push([pairsTogetherArr[i], themesArr[i]]);
+        pairsTogetherArr = arr[i].join(" i ");
+        newArr.push([pairsTogetherArr, themesArr[i]]);
     }
 
     return newArr;
