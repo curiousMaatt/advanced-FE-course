@@ -34,13 +34,11 @@ function createPairs(arr) {
 
 function attachThemes(arr, themesArr) {
     let newArr = [];
-    let pairsTogetherArr = [];
-    
     // other variant of joining
     // let pairsTogetherArr = arr.map( name => name.join(" i "));
 
     for(let i = 0; i < arr.length; i++) {
-        pairsTogetherArr = arr[i].join(" i ");
+        let pairsTogetherArr = arr[i].join(" i ");
         newArr.push([pairsTogetherArr, themesArr[i]]);
     }
 
