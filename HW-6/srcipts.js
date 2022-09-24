@@ -28,7 +28,7 @@ function getAverage(arr) {
   let sum = 0;
   let count = 0;
 
-  arr.map((item) => {
+  arr.forEach((item) => {
       sum += item;
       count++;
   });
