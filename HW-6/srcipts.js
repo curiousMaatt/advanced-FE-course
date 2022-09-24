@@ -30,10 +30,9 @@ function getAverage(arr) {
 
   arr.forEach((item) => {
       sum += item;
-      count++;
   });
 
-  return sum/count;
+  return sum/arr.length;
 }
 
 // №1
