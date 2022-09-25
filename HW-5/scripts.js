@@ -1,8 +1,6 @@
 
 function decimalFilter(...numbers) {
-    let integerCheck = (item) => Number.isInteger(item);
-    let arr = numbers.filter(integerCheck);
-    return arr;
+    return numbers.filter((item) => Number.isInteger(item));
 }
 
 // 1, min - inclusive, max - exclusive
@@ -17,26 +15,28 @@ function getRandomArray(length, min, max) {
     return randomArray;
 }
 
-// 2, fond MODE element
+// 2, find MODE element
 function getMode(...num) {
     let newArr = decimalFilter(...num);
 
-    const quantityArr = [];
+    const quantity = {};
     let result = [];
     let max = 0;
-
+    
     newArr.forEach(num => {
-        if (!quantityArr[num]) quantityArr[num] = 0;
-        quantityArr[num]++;
+        if (!quantity[num]) quantity[num] = 0;
+        quantity[num]++;
     });
 
-    for(let val in quantityArr) {
-        if(quantityArr[val] > max){
-            result = val;
-            max = quantityArr[val];
+    for(let num in quantity) {
+        let value = quantity[num];
+        
+        if(value > max){
+            result = num;
+            max = value;
         }
     }
-    
+
     return result;
 }
 
@@ -45,53 +45,43 @@ function getAverage(...numbers) {
     let arr = decimalFilter(...numbers);
 
     let sum = 0;
-    let count = 0;
 
-    arr.map((item) => {
+    arr.forEach((item) => {
         sum += item;
-        count++;
     });
 
-    return sum/count;
+    return sum/arr.length;
 }
 
 // 4, find the MEDIAN value
 function getMedian(...numbers){
     let arr = decimalFilter(...numbers);
-    arr.sort((a, b) => {return a-b});
+    arr.sort((a, b) => a-b);
     
     const center = Math.floor(arr.length/2);
+    let centerVal = arr[center];
+    let beforeCenter = arr[center-1];
 
     if(arr.length % 2) {
         return arr[center];
     }
 
-    return (arr[center] + arr[center-1]) / 2.0;
-
+    return (centerVal + beforeCenter) / 2;
 }
 
 // 5, filter even and returns odd numbers 
 function filterEvenNumbers(...numbers){
-    let oddCheck = (item) => item % 2 != 0;
-    let arr = numbers.filter(oddCheck);
-
-    return arr;
+    return arr = numbers.filter((item) => item % 2 != 0);
 }
 
 // 6, count positive numbers
 function countPositiveNumbers(...numbers) {
-    let higherThanZero = (item) => item > 0;
-    let arr = numbers.filter(higherThanZero);
-
-    return arr.length;
+    return arr = numbers.filter((item) => item > 0);
 }
 
 // 7, creates arr with numbers which divides by 5
 function getDividedByFive(...numbers) {
-    let dividesByFive = (item) => item % 5 == 0;
-    let arr = numbers.filter(dividesByFive);
-
-    return arr;
+    return arr = numbers.filter((item) => item % 5 == 0);
 }
 
 // 8, replace the swear words
@@ -104,16 +94,16 @@ function replaceBadWords(string) {
     let arr = string.split(' ');
 
     // one way
-    for(let i in arr) {
-        if(arr[i].includes(SWEAR1)){
-            let replacedSwear = arr[i].replace(SWEAR1, HIDDEN);
-            arr[i] = replacedSwear;
-        }
-        else if (arr[i].includes(SWEAR2)){
-            let replacedSwear = arr[i].replace(SWEAR2, HIDDEN);
-            arr[i] = replacedSwear;
-        }
-    }
+    // for(let i in arr) {
+    //     if(arr[i].includes(SWEAR1)){
+    //         let replacedSwear = arr[i].replace(SWEAR1, HIDDEN);
+    //         arr[i] = replacedSwear;
+    //     }
+    //     else if (arr[i].includes(SWEAR2)){
+    //         let replacedSwear = arr[i].replace(SWEAR2, HIDDEN);
+    //         arr[i] = replacedSwear;
+    //     }
+    // }
 
     //second way   
     // for(let i in arr){
@@ -125,14 +115,23 @@ function replaceBadWords(string) {
     //     }
     // }
 
-    return arr.join(' ');
+    let newArr = arr.map( (item, i) => {
+        if(arr[i].includes(SWEAR1)) {
+            item = arr[i].replace(SWEAR1, HIDDEN);
+        }
+        else if (arr[i].includes(SWEAR2)){
+            item = arr[i].replace(SWEAR2, HIDDEN);
+        }
+        return item;
+    }).join(' ');
+
+    return newArr;
 }
 
 
 // 1 function
 console.log("First function: ");
-let randomArr = [];
-randomArr = getRandomArray(5, 2, 8);
+const randomArr = getRandomArray(5, 2, 8);
 console.log(randomArr);
 
 // 2 function
