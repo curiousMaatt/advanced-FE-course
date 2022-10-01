@@ -115,17 +115,27 @@ function replaceBadWords(string) {
     //     }
     // }
 
-    let newArr = arr.map( (item, i) => {
+    //BAD PRACTICE
+    // let newArr = arr.map( (item, i) => {
+    //     if(arr[i].includes(SWEAR1)) {
+    //         item = arr[i].replace(SWEAR1, HIDDEN);
+    //     }
+    //     else if (arr[i].includes(SWEAR2)){
+    //         item = arr[i].replace(SWEAR2, HIDDEN);
+    //     }
+    //     return item;
+    // }).join(' ');
+
+    return newArr = arr.map( (item, i) => {
         if(arr[i].includes(SWEAR1)) {
-            item = arr[i].replace(SWEAR1, HIDDEN);
+            return arr[i].replace(SWEAR1, HIDDEN);
         }
         else if (arr[i].includes(SWEAR2)){
-            item = arr[i].replace(SWEAR2, HIDDEN);
+            return arr[i].replace(SWEAR2, HIDDEN);
         }
-        return item;
+        else return arr[i];
     }).join(' ');
 
-    return newArr;
 }
 
 
