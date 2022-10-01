@@ -11,12 +11,12 @@ function getMyTaxes(salary) {
 }
 
 // №2
-function getMiddleTaxes(country) {
+function getMiddleTaxes() {
     return this.tax * this.middleSalary; 
 }
 
 // №3
-function getTotalTaxes(country) {
+function getTotalTaxes() {
     return this.tax * this.middleSalary * this.vacancies;
 }
 
