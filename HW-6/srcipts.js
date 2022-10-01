@@ -26,7 +26,6 @@ const students = [{
 
 function getAverage(arr) {
   let sum = 0;
-  let count = 0;
 
   arr.forEach((item) => {
       sum += item;
@@ -38,51 +37,49 @@ function getAverage(arr) {
 // №1
 const SIGN = "_";
 function getSubjects(arr) {
-    let subjectNamesArr = Object.keys(arr.subjects);
+  let subjectNamesArr = Object.keys(arr.subjects);
 
-    return capitalizedArr =  subjectNamesArr.map( val => {
-        if( val.includes(SIGN)) {
-            let arr = val.split(SIGN);
-            for (let i in arr) {
-                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-            }
-            const capitalized = arr.join(" ");
-            return capitalized;
-        }
+  return capitalizedArr =  subjectNamesArr.map( val => {
+    let capitalized = val.charAt(0).toUpperCase() + val.slice(1);
 
-        const capitalized = val.charAt(0).toUpperCase() + val.slice(1);
-        return capitalized;
-    });
-    // не знаю як зробити без вкладеною ітерації 
+    if(capitalized.includes(SIGN)) {
+      // let arr = capitalized.split(SIGN);
+      let arr = capitalized.replace(SIGN, " ").split(" ");
+
+      return  arr.join(" ");
+    }
+    return capitalized;
+  });
 }
 
 // №2
 function getAverageMark(arr) {
   let newArr = [];
 
-  Object.values(arr.subjects).forEach( val => newArr = newArr.concat(val));
+  // Object.values(arr.subjects).forEach( val => newArr = newArr.concat(val));
+  
+  newArr = newArr.concat(Object.values(arr.subjects)).flat();
   return getAverage(newArr).toFixed(2);
 }
 
 // №3
 function getStudentInfo(arr) {
-  const obj = {
+  return obj = {
     "course": arr.course,
     "name": arr.name,
     "averageMark": getAverageMark(arr)
   }
-  return obj;
 }
 
 // №4
 function getStudentsNames(students) {
-  let namesArr = [];
+  // let namesArr = [];
+  // for (i in students) {
+  //   namesArr.push(students[i].name);
+  // }
+  // return namesArr.sort();
 
-  for (i in students) {
-    namesArr.push(students[i].name);
-  }
-
-  return namesArr.sort();
+  return namesArr = students.map( val => val.name).sort();
 }
 
 // №5
@@ -90,13 +87,21 @@ function getBestStudent(students) {
   let bestStudent = "";
   let highestGrade = 0;
 
-  for(i in students) {
-    let grade = getAverageMark(students[i]);
+  // for(i in students) {
+  //   let grade = getAverageMark(students[i]);
+  //   if(grade > highestGrade) {
+  //     highestGrade = grade;
+  //     bestStudent = students[i].name;
+  //   }
+  // }
+
+  students.forEach( (val) => {
+    let grade = getAverageMark(val);
     if(grade > highestGrade) {
       highestGrade = grade;
-      bestStudent = students[i].name;
+      bestStudent = val.name;
     }
-  } 
+  });
 
   return bestStudent;
 }
@@ -106,8 +111,10 @@ function calculateWordLetters(str) {
   let obj = {};
 
   for(let i = 0; i < str.length; i++) {
-    if( !obj[str[i]] ) obj[str[i]] = 0;
-    obj[str[i]]++;
+    let letter = str[i];
+
+    if( !obj[letter] ) obj[letter] = 0;
+    obj[letter]++;
   }
 
   return obj;
