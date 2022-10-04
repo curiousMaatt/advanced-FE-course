@@ -44,9 +44,9 @@ function getSubjects(arr) {
 
     if(capitalized.includes(SIGN)) {
       // let arr = capitalized.split(SIGN);
-      let arr = capitalized.replace(SIGN, " ").split(" ");
+      let arr = capitalized.replace(SIGN, " ");
 
-      return  arr.join(" ");
+      return  arr;
     }
     return capitalized;
   });
@@ -54,11 +54,7 @@ function getSubjects(arr) {
 
 // №2
 function getAverageMark(arr) {
-  let newArr = [];
-
-  // Object.values(arr.subjects).forEach( val => newArr = newArr.concat(val));
-  
-  newArr = newArr.concat(Object.values(arr.subjects)).flat();
+  let newArr = Object.values(arr.subjects).flat();
   return getAverage(newArr).toFixed(2);
 }
 
@@ -79,7 +75,7 @@ function getStudentsNames(students) {
   // }
   // return namesArr.sort();
 
-  return namesArr = students.map( val => val.name).sort();
+  return students.map( val => val.name).sort();
 }
 
 // №5
