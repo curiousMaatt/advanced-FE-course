@@ -1,23 +1,47 @@
 
 const wrapper = document.querySelector(".wrapper");
 
+function randomColor(){
+    return Math.floor(Math.random()*16777215).toString(16);
+}
+
 function generateColors(){
     const squares = document.querySelectorAll(".square");
 
     squares.forEach( (item) => {
-        const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        item.style.backgroundColor = "#" + randomColor;
+        const color = randomColor();
+        item.style.backgroundColor = "#" + color;
     });
 }
 
 function generateBlocks() {
-    generateColors();
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("wrapper");
     wrapper.classList.add("active");
+    document.body.append(wrapper);
+
+    const rowTemplate =
+    `<div class="row">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>`;
+
+    const QUANTITY_OF_ROWS = 5
+    let counter = 0;
+
+    while(counter < QUANTITY_OF_ROWS) {
+        wrapper.innerHTML += rowTemplate;
+        counter++;
+    }
+
+    generateColors();
 }
 
 function generateBlocksInterval() {
-    const fuColoring = generateColors.bind();
-    setInterval(fuColoring, 1000);
+    setInterval(generateColors, 1000);
 }
 
 generateBlocks();
