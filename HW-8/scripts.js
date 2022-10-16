@@ -21,16 +21,15 @@ class Student {
     }
 
     getAverageMark() {
-        if(this.isLearning) {
-            let sum = 0;
+        if(!this.isLearning) return null;
+
+        let sum = 0;
         
-            this.mark.forEach((item) => {
-                sum += item;
-            });
+        this.mark.forEach((item) => {
+            sum += item;
+        });
         
-            return sum/this.mark.length;
-        }
-        return null;
+        return sum/this.mark.length;
     }
 
     dissmiss() {
@@ -45,16 +44,15 @@ class Student {
 class BudgetStudent extends Student {
     constructor(university, course, fullName, mark){
         super(university, course, fullName, mark);
-        this.isLearning = true;
 
         setInterval( () => { this.getScholarship(); }, 30000);
     }
 
     getScholarship() {
-        const MinMarkForScholarship = 4;
+        const MIN_MARK_FOR_SCHOOLARSHIP = 4;
 
-        if((this.isLearning) && this.getAverageMark() >= MinMarkForScholarship) {
-            console.log("Ви отримали 1400 грн. стипендії");
+        if(this.isLearning && this.getAverageMark() >= MIN_MARK_FOR_SCHOOLARSHIP) {
+            return "Ви отримали 1400 грн. стипендії";
         }
     }
 }
