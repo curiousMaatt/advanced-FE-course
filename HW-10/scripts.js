@@ -1,6 +1,3 @@
-
-const wrapper = document.querySelector(".wrapper");
-
 function randomColor(){
     return Math.floor(Math.random()*16777215).toString(16);
 }
@@ -16,8 +13,7 @@ function generateColors(){
 
 function generateBlocks() {
     const wrapper = document.createElement("div");
-    wrapper.classList.add("wrapper");
-    wrapper.classList.add("active");
+    wrapper.classList.add("wrapper", "active");
     document.body.append(wrapper);
 
     const rowTemplate =
